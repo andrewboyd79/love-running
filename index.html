@@ -18,8 +18,14 @@
   .hero-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; }
   .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--lemon); margin-bottom: 12px; }
   .hero-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 11vw, 140px); line-height: 0.9; letter-spacing: 2px; color: #fff; }
-  .hero-heading span { color: transparent; -webkit-text-stroke: 2px #fff; }
-  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 16px; }
+  .hero-heading span {
+    background: var(--lemon);
+    color: var(--ink);
+    padding: 0 0.18em;
+    border-radius: 6px;
+    line-height: 1.5;
+  }
+  .hero-sub { font-size: 16px; color: #dad4c8; margin-top: 16px; }
   .hero-cta { display: inline-flex; align-items: center; background: var(--lemon); color: var(--ink); font-size: 13px; font-weight: 600; padding: 14px 28px; border-radius: 1000px; border: none; margin-top: 28px; cursor: pointer; width: fit-content; }
   .hero-curve { position: absolute; bottom: -1px; left: 0; right: 0; height: 100px; z-index: 2; pointer-events: none; }
   .hero-curve svg { width: 100%; height: 100%; display: block; }
@@ -46,7 +52,7 @@
   }
   .ethos-pill::after { content: attr(data-word); position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 130px; line-height: 1; color: rgba(0,0,0,0.08); bottom: -20px; right: -12px; pointer-events: none; white-space: nowrap; }
   .ethos-pill-num { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: var(--ink); }
-  .ethos-pill-word { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; letter-spacing: 1px; color: #fff; mix-blend-mode: multiply; position: relative; z-index: 1; }
+  .ethos-pill-word { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; letter-spacing: 1px; color: #fff; position: relative; z-index: 1; }
 
   /* Right panel — contained, doesn't bleed to screen edge */
   .ethos-band-right {

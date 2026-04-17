@@ -1,8 +1,76 @@
-# Code Quality Review & Improvement Plan
+# Love Running — Improvement Plan
 **Project:** Love Running — Dublin Running Club  
-**Date:** 2026-04-17  
-**Reviewer:** Claude Sonnet 4.6  
-**Baseline Score:** 6.5 / 10
+**Started:** 2026-04-17  
+
+---
+
+## Overview
+
+This document records the full improvement lifecycle for the Love Running project. It covers two phases:
+
+1. **Phase 1 — Visual Redesign** *(completed 2026-04-17)*: A new design spec was defined and implemented across all three pages.
+2. **Phase 2 — Code Quality Remediation** *(in progress)*: Following a post-implementation code review, a prioritised set of fixes was identified to improve accessibility, semantics, responsiveness, and maintainability.
+
+---
+
+## Phase 1 — Visual Redesign
+
+### Design Specification
+
+A comprehensive design system (`DESIGN.md`) was created prior to implementation, inspired by the Clay website aesthetic. Key decisions made in the spec:
+
+| Aspect | Decision |
+|---|---|
+| Visual style | Editorial/magazine — warm, playful, distinctive |
+| Background | Cream canvas `#faf9f7` |
+| Accent palette | Matcha `#84e7a5`, Slushie `#0089ad`, Ube `#c1b0ff`, Pomegranate `#fc7981`, Lemon `#fbbd41` |
+| Display font | Bebas Neue (adapted from spec's Roobert — chosen for editorial character) |
+| Body font | DM Sans |
+| Texture | Organic SVG topo contour backgrounds (`topo-light.svg`, `topo-dark.svg`) |
+| Dark tone | Warm espresso `#2a2420` (not pure black) |
+| Border radius | Layered scale: 4px cards → 20px groups → 32px sections → pill |
+
+The full specification is documented in [`DESIGN.md`](../DESIGN.md) at the project root.
+
+### What Was Built
+
+The spec was implemented as-is across all three pages. The design was developed iteratively using a visual companion (browser-based mockup preview) before being applied to the live files.
+
+| Page | Key Design Features |
+|---|---|
+| `index.html` | Full-viewport hero with S3 background image and SVG bezier curve edge; topo-textured schedule section with colour-coded run groups; ethos section with pill cards and contour background |
+| `gallery.html` | Film strip hero (staggered photo placeholders rising from dark topo background); editorial magazine grid with feature, strip, asymmetric, and quote-block layouts |
+| `signup.html` | Split-panel layout: dark invitation panel (topo texture, schedule preview, member avatars) + cream form panel with pill inputs and run-type selector |
+
+Supporting assets added to the project root:
+- `topo-dark.svg` — 6-hill organic contour texture for dark backgrounds
+- `topo-light.svg` — same hills at higher opacity for light backgrounds
+
+### Phase 1 Outcome
+
+Visual redesign committed and deployed to GitHub Pages:  
+**https://andrewboyd79.github.io/love-running/**
+
+---
+
+## Phase 2 — Code Quality Remediation
+
+### Code Review
+
+A code review was conducted immediately after the visual redesign was applied. The review scored the implementation across seven categories.
+
+### Scores by Category
+
+| Category | Score | Summary |
+|---|---|---|
+| HTML Quality (semantics, accessibility) | 4 / 10 | No heading elements on any page; form labels unlinked |
+| CSS Quality (organisation, maintainability) | 5.5 / 10 | Good variables, but all CSS duplicated inline across three files |
+| Navigation & Linking | 7 / 10 | Internal links work; social links placeholder only |
+| Responsive Design | 2 / 10 | Zero media queries — layout breaks on mobile |
+| Performance | 6 / 10 | No JS, good font swap; hero image is HTTP, no preconnect hints |
+| Code Consistency | 7.5 / 10 | Palette/nav consistent; footer colour and heading hierarchy inconsistent |
+| Bugs & Issues | 5 / 10 | Non-functional run selector, wrong page title, dead CSS file |
+| **Overall** | **6.5 / 10** | |
 
 ---
 

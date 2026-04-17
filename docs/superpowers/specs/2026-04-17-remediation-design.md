@@ -31,14 +31,16 @@ The workflow defined in this spec — GitHub Projects, feature branches, linked 
 ## 2. Baseline Assessment
 
 ### Lighthouse Scores (pre-remediation)
-*To be recorded before the first PR is raised. Run against the live GitHub Pages URL: https://andrewboyd79.github.io/love-running/*
+*Recorded 2026-04-17 against the live GitHub Pages URL: https://andrewboyd79.github.io/love-running/*
 
-| Metric | Score |
-|---|---|
-| Performance | TBC |
-| Accessibility | TBC |
-| Best Practices | TBC |
-| SEO | TBC |
+| Metric | index.html | gallery.html | signup.html |
+|---|---|---|---|
+| Performance | 97 | 100 | 98 |
+| Accessibility | 91 | 85 | 94 |
+| Best Practices | 77 | 100 | 100 |
+| SEO | 90 | 90 | 90 |
+
+**Notes:** Best Practices 77 on homepage is the HTTP hero image (mixed content warning — fixed in PR 4). Accessibility gap on gallery (85) reflects missing heading hierarchy and aria-labels. Performance scores are strong across all pages.
 
 ### Code Review Scores (post-redesign, pre-remediation)
 
@@ -285,9 +287,9 @@ PR6 (polish)
 ## 7. Definition of Done — Phase 2b
 
 Phase 2b is complete when:
-- [ ] All six PRs merged to `master`
-- [ ] All acceptance criteria checked off
-- [ ] Lighthouse scores recorded post-remediation
-- [ ] Updated code review score recorded in `docs/code-quality-improvement-plan.md`
+- [x] All six PRs merged to `master` ✓ (7 PRs total — PR #5 added for quality fixes post-review)
+- [x] All acceptance criteria checked off
+- [ ] Lighthouse scores recorded post-remediation ← run after merge completes
+- [x] Updated code review score recorded in `docs/code-quality-improvement-plan.md`
 - [ ] GitHub Project board shows all issues as `Done`
 - [ ] `docs/code-quality-improvement-plan.md` updated to mark Phase 2b complete

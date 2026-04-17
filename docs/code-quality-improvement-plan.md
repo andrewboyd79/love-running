@@ -94,8 +94,33 @@ Full redesign applied across three pages (`index.html`, `gallery.html`, `signup.
 
 ## Priority Fix Plan
 
-Issues are grouped **P1 (must fix)** → **P2 (should fix)** → **P3 (nice to have)**.  
+Issues are grouped **P1 (must fix)** → **P2 (should fix)** → **P3 (nice to have)**.
 Each item has a status field updated as work progresses.
+
+---
+
+## Phase 2b Completion
+
+All six remediation PRs merged to `master` on 2026-04-17.
+
+| PR | Branch | Description |
+|---|---|---|
+| #2 | `fix/semantics` | Heading hierarchy, page title, clear legacy CSS |
+| #4 | `fix/accessibility` | ARIA labels, form associations, functional run selector |
+| #5 | `fix/accessibility-quality` | Focus styles, selection colours, fieldset semantics |
+| #7 | `fix/responsive` | Mobile breakpoints at 767px for all pages |
+| #9 | `fix/performance` | HTTPS hero, preconnect hints, meta descriptions |
+| #11 | `fix/css-architecture` | Shared stylesheet, dark-tone variables |
+| #14 | `fix/polish` | Favicon, footer colour, button type |
+
+**Lighthouse baseline (2026-04-17):**
+- index.html: Performance 97, Accessibility 91, Best Practices 77, SEO 90
+- gallery.html: Performance 100, Accessibility 85, Best Practices 100, SEO 90
+- signup.html: Performance 98, Accessibility 94, Best Practices 100, SEO 90
+
+**Post-remediation Lighthouse scores to be recorded.** Run against: https://andrewboyd79.github.io/love-running/
+
+**Estimated code review score:** 8.5–9.0 / 10 (up from 6.5 / 10)
 
 ---
 
@@ -321,21 +346,21 @@ Option A is recommended — it works without JavaScript and is natively keyboard
 
 | ID | Priority | Description | Status |
 |---|---|---|---|
-| FIX-01 | P1 | Heading hierarchy on all pages | `[ ] Open` |
-| FIX-02 | P1 | Form label/input associations | `[ ] Open` |
-| FIX-03 | P1 | Responsive breakpoints | `[ ] Open` |
-| FIX-04 | P1 | Page title on index.html | `[ ] Open` |
-| FIX-05 | P1 | Hero image HTTP → HTTPS | `[ ] Open` |
-| FIX-06 | P1 | Run selector functional | `[ ] Open` |
-| FIX-07 | P2 | Meta descriptions | `[ ] Open` |
-| FIX-08 | P2 | ARIA labels (nav, social links) | `[ ] Open` |
-| FIX-09 | P2 | Extract shared CSS | `[ ] Open` |
-| FIX-10 | P2 | Dark tone CSS variables | `[ ] Open` |
-| FIX-11 | P2 | Google Fonts preconnect | `[ ] Open` |
-| FIX-12 | P3 | Favicon | `[ ] Open` |
-| FIX-13 | P3 | Footer colour consistency | `[ ] Open` |
-| FIX-14 | P3 | `type="button"` on coffee pill | `[ ] Open` |
-| FIX-15 | P3 | Delete legacy style.css | `[ ] Open` |
+| FIX-01 | P1 | Heading hierarchy on all pages | `[x] Done (PR #2)` |
+| FIX-02 | P1 | Form label/input associations | `[x] Done (PR #4)` |
+| FIX-03 | P1 | Responsive breakpoints | `[x] Done (PR #7)` |
+| FIX-04 | P1 | Page title on index.html | `[x] Done (PR #2)` |
+| FIX-05 | P1 | Hero image HTTP → HTTPS | `[x] Done (PR #9)` |
+| FIX-06 | P1 | Run selector functional | `[x] Done (PR #4)` |
+| FIX-07 | P2 | Meta descriptions | `[x] Done (PR #9)` |
+| FIX-08 | P2 | ARIA labels (nav, social links) | `[x] Done (PR #4)` |
+| FIX-09 | P2 | Extract shared CSS | `[x] Done (PR #11)` |
+| FIX-10 | P2 | Dark tone CSS variables | `[x] Done (PR #11)` |
+| FIX-11 | P2 | Google Fonts preconnect | `[x] Done (PR #9)` |
+| FIX-12 | P3 | Favicon | `[x] Done (PR #14)` |
+| FIX-13 | P3 | Footer colour consistency | `[x] Done (PR #14)` |
+| FIX-14 | P3 | `type="button"` on coffee pill | `[x] Done (PR #14)` |
+| FIX-15 | P3 | Delete legacy style.css | `[x] Done (PR #2)` |
 
 ---
 

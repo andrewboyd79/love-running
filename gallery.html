@@ -221,6 +221,45 @@
   .footer-social { display: flex; gap: 20px; }
   .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
   .footer-copy { font-size: 11px; color: #3d3730; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 767px) {
+    /* Nav */
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+
+    /* Hero */
+    .hero { padding: 100px 20px 0; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 32px; }
+    .hero-title { font-size: clamp(48px, 12vw, 72px); }
+    .hero-meta { text-align: left; max-width: 100%; }
+
+    /* Film strip — allow horizontal scroll on mobile */
+    .film-strip {
+      overflow-x: auto;
+      overflow-y: hidden;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Filter bar */
+    .hero-bar { padding: 16px 20px; flex-wrap: wrap; gap: 10px; }
+    .hero-bar-scroll { display: none; }
+
+    /* Gallery grids — all collapse to single column */
+    .gallery-section { padding: 40px 20px; }
+    .grid-feature { grid-template-columns: 1fr; }
+    .grid-feature .photo-main { grid-row: unset; }
+    .grid-strip { grid-template-columns: 1fr; }
+    .grid-asymmetric { grid-template-columns: 1fr; }
+    .grid-quote { grid-template-columns: 1fr; }
+
+    /* Footer */
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+  }
 </style>
 </head>
 <body>

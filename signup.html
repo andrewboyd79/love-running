@@ -161,6 +161,40 @@
   .footer-social { display: flex; gap: 20px; }
   .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
   .footer-copy { font-size: 11px; color: #3d3730; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 767px) {
+    /* Nav */
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+
+    /* Signup split — stack to single column */
+    .signup-wrap {
+      grid-template-columns: 1fr;
+      margin: 64px 0 0;
+      border-radius: 0;
+      min-height: unset;
+    }
+
+    /* Invite panel — let height size to content, remove full-height constraint */
+    .invite-panel {
+      padding: 48px 24px 40px;
+      min-height: unset;
+    }
+    .invite-heading { font-size: clamp(44px, 11vw, 72px); }
+
+    /* Form panel */
+    .form-panel { padding: 48px 24px 60px; }
+
+    /* Form row — first/last name stack to single column */
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Run options — stack to single column */
+    .run-options { grid-template-columns: 1fr; }
+
+    /* Footer */
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+  }
 </style>
 </head>
 <body>

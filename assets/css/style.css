@@ -1,1 +1,59 @@
-/* Shared stylesheet — populated in fix/css-architecture (PR 5) */
+/* ============================================================
+   Love Running — Shared Stylesheet
+   Extracted from inline style blocks (FIX-09, FIX-10)
+   ============================================================ */
+
+/* ── RESET ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── DESIGN TOKENS ── */
+:root {
+  /* Brand palette */
+  --matcha:      #84e7a5;
+  --slushie:     #0089ad;
+  --ube:         #c1b0ff;
+  --pomegranate: #fc7981;
+  --lemon:       #fbbd41;
+  /* Light neutrals */
+  --cream: #faf9f7;
+  --oat:   #dad4c8;
+  --ink:   #0d0d0d;
+  /* Dark-tone palette (FIX-10) */
+  --bark:     #2a2420;   /* dark warm brown — schedule/hero bg */
+  --espresso: #1e1a17;   /* deepest dark — footer bg */
+  --wood:     #3d3730;   /* mid dark — footer text */
+  --stone:    #55504a;   /* dark muted — secondary text on dark */
+  --pebble:   #7a7065;   /* lighter muted — tertiary text on dark */
+}
+
+/* ── BASE ── */
+body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
+
+/* ── NAV ── */
+/* Default: light nav (index + signup). Gallery overrides inline. */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 48px;
+  background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--oat);
+}
+.nav-logo { text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 13px; font-weight: 500; color: #55534e; text-decoration: none; }
+.nav-links a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
+
+/* ── FOOTER ── */
+/* Default: dark footer (gallery + signup). Index overrides inline. */
+footer { background: var(--ink); padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--wood); }
+.footer-social { display: flex; gap: 20px; }
+.footer-social a { font-size: 11px; color: var(--wood); text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
+.footer-copy { font-size: 11px; color: var(--wood); }
+
+/* ── MOBILE — SHARED ── */
+@media (max-width: 767px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+}

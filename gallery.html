@@ -8,29 +8,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --matcha: #84e7a5; --slushie: #0089ad; --ube: #c1b0ff;
-    --pomegranate: #fc7981; --lemon: #fbbd41;
-    --cream: #faf9f7; --oat: #dad4c8; --ink: #0d0d0d;
-  }
-  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
-
+  /* ── NAV — gallery-specific dark override ── */
+  /* Shared default is a light nav; gallery uses a dark translucent bark background */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: rgba(42,36,32,0.88); backdrop-filter: blur(8px);
+    background: rgba(42,36,32,0.88);
+    border-bottom: none;
   }
-  .nav-logo { text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #fff; }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); text-decoration: none; }
-  .nav-links a.active { color: #fff; border-bottom: 1.5px solid #fff; padding-bottom: 1px; }
+  .nav-logo { color: #fff; }
+  .nav-links a { color: rgba(255,255,255,0.5); }
+  .nav-links a.active { color: #fff; border-bottom-color: #fff; }
 
   /* HERO — Film Strip */
   .hero {
-    background-color: #2a2420;
+    background-color: var(--bark);
     background-image: url('topo-dark.svg');
     background-size: 700px 460px;
     background-repeat: repeat;
@@ -189,7 +181,7 @@
 
   /* Pull quote block */
   .quote-block {
-    background-color: #2a2420;
+    background-color: var(--bark);
     background-image: url('topo-dark.svg');
     background-size: 700px 460px;
     background-position: center;
@@ -200,7 +192,7 @@
   }
   .quote-mark { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: var(--lemon); line-height: 0.7; }
   .quote-text { font-size: 20px; font-weight: 600; color: #fff; line-height: 1.5; letter-spacing: -0.2px; flex: 1; display: flex; align-items: center; }
-  .quote-author { font-size: 11px; color: #7a7065; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px; }
+  .quote-author { font-size: 11px; color: var(--pebble); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px; }
 
   .quote-block-light {
     background-color: #1e3028;
@@ -216,21 +208,12 @@
   .quote-block-light .quote-text { color: #fff; }
   .quote-block-light .quote-author { color: rgba(255,255,255,0.45); }
 
-  footer {
-    background: var(--ink); padding: 32px 48px; margin-top: 80px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
-  .footer-social { display: flex; gap: 20px; }
-  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
-  .footer-copy { font-size: 11px; color: #3d3730; }
+  /* ── FOOTER — gallery-specific override ── */
+  /* Shared default is var(--ink) which matches; only add margin-top here */
+  footer { margin-top: 80px; }
 
   /* ── MOBILE ── */
   @media (max-width: 767px) {
-    /* Nav */
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-
     /* Hero */
     .hero { padding: 100px 20px 0; }
     .hero-inner { flex-direction: column; align-items: flex-start; gap: 20px; padding-bottom: 32px; }
@@ -259,9 +242,6 @@
     .grid-strip { grid-template-columns: 1fr; }
     .grid-asymmetric { grid-template-columns: 1fr; }
     .grid-quote { grid-template-columns: 1fr; }
-
-    /* Footer */
-    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
   }
 </style>
 </head>

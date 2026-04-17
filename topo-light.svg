@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="460">
+  <!-- Hill 1: matcha green, large left-centre -->
+  <ellipse cx="160" cy="230" rx="148" ry="95" fill="none" stroke="rgba(132,231,165,0.28)" stroke-width="1" transform="rotate(-6,160,230)"/>
+  <ellipse cx="160" cy="230" rx="116" ry="72" fill="none" stroke="rgba(132,231,165,0.22)" stroke-width="1" transform="rotate(-6,160,230)"/>
+  <ellipse cx="160" cy="230" rx="84"  ry="50" fill="none" stroke="rgba(132,231,165,0.17)" stroke-width="1" transform="rotate(-6,160,230)"/>
+  <ellipse cx="160" cy="230" rx="54"  ry="30" fill="none" stroke="rgba(132,231,165,0.13)" stroke-width="1" transform="rotate(-6,160,230)"/>
+  <ellipse cx="160" cy="230" rx="26"  ry="14" fill="none" stroke="rgba(132,231,165,0.10)" stroke-width="1" transform="rotate(-6,160,230)"/>
+  <ellipse cx="160" cy="230" rx="10"  ry="5"  fill="none" stroke="rgba(132,231,165,0.08)" stroke-width="1" transform="rotate(-6,160,230)"/>
+
+  <!-- Hill 2: slushie blue, top-right -->
+  <ellipse cx="520" cy="95"  rx="92"  ry="54" fill="none" stroke="rgba(0,137,173,0.25)"   stroke-width="1" transform="rotate(-22,520,95)"/>
+  <ellipse cx="520" cy="95"  rx="66"  ry="37" fill="none" stroke="rgba(0,137,173,0.20)"   stroke-width="1" transform="rotate(-22,520,95)"/>
+  <ellipse cx="520" cy="95"  rx="42"  ry="22" fill="none" stroke="rgba(0,137,173,0.15)"   stroke-width="1" transform="rotate(-22,520,95)"/>
+  <ellipse cx="520" cy="95"  rx="20"  ry="10" fill="none" stroke="rgba(0,137,173,0.11)"   stroke-width="1" transform="rotate(-22,520,95)"/>
+
+  <!-- Hill 3: lemon gold, wide flat ridge bottom-right -->
+  <ellipse cx="560" cy="370" rx="148" ry="46" fill="none" stroke="rgba(251,189,65,0.22)"  stroke-width="1" transform="rotate(8,560,370)"/>
+  <ellipse cx="560" cy="370" rx="110" ry="30" fill="none" stroke="rgba(251,189,65,0.17)"  stroke-width="1" transform="rotate(8,560,370)"/>
+  <ellipse cx="560" cy="370" rx="70"  ry="17" fill="none" stroke="rgba(251,189,65,0.12)"  stroke-width="1" transform="rotate(8,560,370)"/>
+  <ellipse cx="560" cy="370" rx="34"  ry="7"  fill="none" stroke="rgba(251,189,65,0.09)"  stroke-width="1" transform="rotate(8,560,370)"/>
+
+  <!-- Hill 4: ube purple, tiny top-left -->
+  <ellipse cx="38"  cy="58"  rx="46"  ry="34" fill="none" stroke="rgba(193,176,255,0.24)" stroke-width="1" transform="rotate(14,38,58)"/>
+  <ellipse cx="38"  cy="58"  rx="28"  ry="19" fill="none" stroke="rgba(193,176,255,0.18)" stroke-width="1" transform="rotate(14,38,58)"/>
+  <ellipse cx="38"  cy="58"  rx="13"  ry="8"  fill="none" stroke="rgba(193,176,255,0.13)" stroke-width="1" transform="rotate(14,38,58)"/>
+
+  <!-- Hill 5: pomegranate, tall narrow lower-middle -->
+  <ellipse cx="360" cy="380" rx="52"  ry="78" fill="none" stroke="rgba(252,121,129,0.2)"  stroke-width="1" transform="rotate(-10,360,380)"/>
+  <ellipse cx="360" cy="380" rx="34"  ry="52" fill="none" stroke="rgba(252,121,129,0.15)" stroke-width="1" transform="rotate(-10,360,380)"/>
+  <ellipse cx="360" cy="380" rx="18"  ry="28" fill="none" stroke="rgba(252,121,129,0.11)" stroke-width="1" transform="rotate(-10,360,380)"/>
+
+  <!-- Hill 6: slushie, partial off right edge -->
+  <ellipse cx="690" cy="240" rx="85"  ry="60" fill="none" stroke="rgba(0,137,173,0.2)"    stroke-width="1" transform="rotate(5,690,240)"/>
+  <ellipse cx="690" cy="240" rx="58"  ry="40" fill="none" stroke="rgba(0,137,173,0.15)"   stroke-width="1" transform="rotate(5,690,240)"/>
+  <ellipse cx="690" cy="240" rx="32"  ry="22" fill="none" stroke="rgba(0,137,173,0.11)"   stroke-width="1" transform="rotate(5,690,240)"/>
+</svg>

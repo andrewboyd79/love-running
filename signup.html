@@ -1,68 +1,282 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <title>Love Running</title>
-    
-    <link href="assets\css\style.css" rel="stylesheet" type="text/css" />
-  </head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Love Running</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --matcha: #84e7a5; --slushie: #0089ad; --ube: #c1b0ff;
+    --pomegranate: #fc7981; --lemon: #fbbd41;
+    --cream: #faf9f7; --oat: #dad4c8; --ink: #0d0d0d;
+  }
+  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
 
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--oat);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: #55534e; text-decoration: none; }
+  .nav-links a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
+
+  /* SPLIT LAYOUT: left = invitation, right = form */
+  .signup-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    margin: 80px 48px 0;
+    border-radius: 32px;
+    overflow: hidden;
+  }
+
+  /* LEFT: invitation panel */
+  .invite-panel {
+    background-color: #2a2420;
+    background-image: url('topo-dark.svg');
+    background-size: 700px 460px;
+    padding: 140px 64px 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .invite-top {}
+  .invite-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--lemon); margin-bottom: 20px;
+  }
+  .invite-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 6vw, 88px);
+    line-height: 0.95; letter-spacing: 2px; color: #fff;
+  }
+  .invite-heading span { color: var(--lemon); }
+  .invite-sub {
+    font-size: 15px; color: #7a7065; line-height: 1.75;
+    margin-top: 20px; max-width: 340px;
+  }
+
+  /* Mini schedule preview */
+  .invite-schedule { margin-top: 48px; }
+  .invite-schedule-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: #55504a; margin-bottom: 14px;
+  }
+  .invite-run {
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 0; border-bottom: 1px solid #3d3730;
+  }
+  .invite-run:last-child { border-bottom: none; }
+  .invite-run-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .invite-run-day { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; width: 44px; flex-shrink: 0; }
+  .invite-run-name { font-size: 13px; font-weight: 500; color: #e0d8d0; flex: 1; }
+  .invite-run-time { font-size: 12px; color: #55504a; }
+
+  /* Member count */
+  .invite-bottom {
+    display: flex; align-items: center; gap: 20px; margin-top: 48px;
+  }
+  .invite-avatars { display: flex; }
+  .invite-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 2px solid #2a2420; margin-left: -10px;
+  }
+  .invite-avatar:first-child { margin-left: 0; }
+  .invite-member-text { font-size: 13px; color: #7a7065; line-height: 1.5; }
+  .invite-member-text strong { color: #fff; }
+
+  /* RIGHT: form panel */
+  .form-panel {
+    background: var(--cream);
+    background-image: url('topo-light.svg');
+    background-size: 700px 460px;
+    padding: 140px 64px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .form-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px; letter-spacing: 2px; color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .form-sub { font-size: 14px; color: #9f9b93; margin-bottom: 40px; }
+
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block; font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #9f9b93; margin-bottom: 8px;
+  }
+  .form-input {
+    width: 100%; padding: 14px 20px;
+    border: 1.5px solid var(--oat); border-radius: 1000px;
+    background: #fff; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--slushie); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* Run type selector */
+  .run-options { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .run-option {
+    border: 1.5px solid var(--oat); border-radius: 20px;
+    padding: 14px 12px; text-align: center; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .run-option:hover { border-color: var(--ink); }
+  .run-option.selected { border-color: var(--matcha); background: rgba(132,231,165,0.08); }
+  .run-option-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 8px; }
+  .run-option-name { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .run-option-detail { font-size: 10px; color: #9f9b93; margin-top: 2px; }
+
+  .form-submit {
+    width: 100%; padding: 16px;
+    background: var(--ink); color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+    border: none; border-radius: 1000px; cursor: pointer;
+    margin-top: 8px; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--lemon); color: var(--ink); }
+  .form-note { font-size: 11px; color: #bbb; text-align: center; margin-top: 14px; }
+
+  footer {
+    background: var(--ink); padding: 32px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
+  .footer-social { display: flex; gap: 20px; }
+  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
+  .footer-copy { font-size: 11px; color: #3d3730; }
+</style>
+</head>
 <body>
-    <header>
-        <a href="index.html">
-            <h2 id="logo">Love Running</h2>
-        </a>
-        <nav>
-            <ul id="menu">
-                <li>
-                    <a class="active" href="signup.html">Sign Up</a>
-                </li>
-                <li>
-                    <a href="gallery.html">Gallery</a>
-                </li>
 
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-   <section class="form-section">
-       
-    <form  class="signup-form" method="post" action="https://formdump.codeinstitute.net/">
-        <h2><i class="fas fa-heartbeat"></i>Let's get you signed up!</h2>
-        <label for="fname">First Name</label> <br>
-        <input class="text-input" id="fname" type="text" name="first_name" required> <br>
-        
-        <label for="lname">Last Name</label> <br>
-        <input class="text-input" id="lname" type="text" name="last_name" required> <br>
-        
-        <label for="email">Email Address</label> <br>
-        <input class="text-input" id="email" type="email"name="email_address" required> <br>
-        
-        <label for="road">Road</label>
-        <input id="road" type="radio" value="road" name=" running_preference" required>
-        
-        <label for="trail">Trail</label>
-        <input id="trail" type="radio" value="trail" name="running_preference" required>
-        
-         <label for="both">Both</label>
-        <input id="both" type="radio" value="both" name="running_preference" required> <br>
-        
-        <input class="join-button" type="submit" value="Let's Run!">
-        
+<nav>
+  <div class="nav-logo">Love Running</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Gallery</a>
+    <a href="#" class="active">Sign Up</a>
+  </div>
+</nav>
+
+<div class="signup-wrap">
+
+  <!-- LEFT: Invitation -->
+  <div class="invite-panel">
+    <div class="invite-top">
+      <div class="invite-eyebrow">Dublin Running Club</div>
+      <div class="invite-heading">Run With<br><span>People</span><br>Who Get It</div>
+      <div class="invite-sub">No judgement on pace. No pressure on distance. Just a group of people who show up, run, and make it the best part of their week.</div>
+
+      <div class="invite-schedule">
+        <div class="invite-schedule-label">Join us this week</div>
+        <div class="invite-run">
+          <div class="invite-run-dot" style="background: var(--matcha);"></div>
+          <div class="invite-run-day" style="color: var(--matcha);">MON</div>
+          <div class="invite-run-name">5k Urban · The Marker</div>
+          <div class="invite-run-time">18:30</div>
+        </div>
+        <div class="invite-run">
+          <div class="invite-run-dot" style="background: var(--slushie);"></div>
+          <div class="invite-run-day" style="color: var(--slushie);">TUE</div>
+          <div class="invite-run-name">10k Trail · Phoenix Park</div>
+          <div class="invite-run-time">18:30</div>
+        </div>
+        <div class="invite-run">
+          <div class="invite-run-dot" style="background: var(--ube);"></div>
+          <div class="invite-run-day" style="color: var(--ube);">FRI</div>
+          <div class="invite-run-name">5k Urban · The Marker</div>
+          <div class="invite-run-time">17:00</div>
+        </div>
+        <div class="invite-run">
+          <div class="invite-run-dot" style="background: var(--pomegranate);"></div>
+          <div class="invite-run-day" style="color: var(--pomegranate);">SAT</div>
+          <div class="invite-run-name">10k Trail · Phoenix Park</div>
+          <div class="invite-run-time">09:30</div>
+        </div>
+        <div class="invite-run">
+          <div class="invite-run-dot" style="background: var(--lemon);"></div>
+          <div class="invite-run-day" style="color: var(--lemon);">SUN</div>
+          <div class="invite-run-name">Coffee · The Marker</div>
+          <div class="invite-run-time">11:30</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="invite-bottom">
+      <div class="invite-avatars">
+        <div class="invite-avatar" style="background: var(--matcha);"></div>
+        <div class="invite-avatar" style="background: var(--slushie);"></div>
+        <div class="invite-avatar" style="background: var(--ube);"></div>
+        <div class="invite-avatar" style="background: var(--pomegranate);"></div>
+        <div class="invite-avatar" style="background: var(--lemon);"></div>
+      </div>
+      <div class="invite-member-text"><strong>Join 200+ members</strong><br>running Dublin every week</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Form -->
+  <div class="form-panel">
+    <div class="form-heading">Let's get you running</div>
+    <div class="form-sub">Fill in your details and we'll be in touch before your first run.</div>
+
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First name</label>
+          <input class="form-input" type="text" placeholder="Your first name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name</label>
+          <input class="form-input" type="text" placeholder="Your last name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" style="margin-bottom: 12px;">Which runs interest you?</label>
+        <div class="run-options">
+          <div class="run-option selected">
+            <div class="run-option-dot" style="background: var(--matcha);"></div>
+            <div class="run-option-name">Urban 5k</div>
+            <div class="run-option-detail">Mon &amp; Fri</div>
+          </div>
+          <div class="run-option">
+            <div class="run-option-dot" style="background: var(--slushie);"></div>
+            <div class="run-option-name">Trail 10k</div>
+            <div class="run-option-detail">Tue &amp; Sat</div>
+          </div>
+          <div class="run-option">
+            <div class="run-option-dot" style="background: var(--lemon);"></div>
+            <div class="run-option-name">Sunday ☕</div>
+            <div class="run-option-detail">Social only</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="form-submit" type="submit">I'm in — sign me up</button>
+      <div class="form-note">No spam. Just run times and the occasional post-run coffee invite.</div>
     </form>
-  
-   </section> 
-    <footer>
-        <ul class="social-networks">
-                <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
-                <li><a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a></li>
-                <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-    </footer>
-    <script src="https://kit.fontawesome.com/3982258271.js"></script>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Love Running</div>
+  <div class="footer-social"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a><a href="#">YT</a></div>
+  <div class="footer-copy">© 2026 Love Running Dublin</div>
+</footer>
+
 </body>
 </html>

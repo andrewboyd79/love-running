@@ -1,146 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Running</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"/>
-	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Running — Concept A v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --matcha: #84e7a5;
+    --slushie: #0089ad;
+    --ube: #c1b0ff;
+    --pomegranate: #fc7981;
+    --lemon: #fbbd41;
+    --cream: #faf9f7;
+    --oat: #dad4c8;
+    --ink: #0d0d0d;
+  }
+  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--oat);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: #55534e; text-decoration: none; }
+  .nav-links a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
+
+  /* ── HERO ── */
+  .hero { height: 100vh; position: relative; overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; background: url('http://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/main-image.png') center/cover no-repeat; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+  .hero-content { position: relative; z-index: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 80px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--lemon); margin-bottom: 12px; }
+  .hero-heading { font-family: 'Bebas Neue', sans-serif; font-size: clamp(72px, 11vw, 140px); line-height: 0.9; letter-spacing: 2px; color: #fff; }
+  .hero-heading span { color: transparent; -webkit-text-stroke: 2px #fff; }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 16px; }
+  .hero-cta { display: inline-flex; align-items: center; background: var(--lemon); color: var(--ink); font-size: 13px; font-weight: 600; padding: 14px 28px; border-radius: 1000px; border: none; margin-top: 28px; cursor: pointer; width: fit-content; }
+  .hero-curve { position: absolute; bottom: -1px; left: 0; right: 0; height: 100px; z-index: 2; pointer-events: none; }
+  .hero-curve svg { width: 100%; height: 100%; display: block; }
+
+  /* ── ETHOS ── */
+  .ethos {
+    margin-top: 80px;
+    background-color: var(--cream);
+    background-image: url('topo-light.svg');
+    background-size: 700px 460px;
+  }
+  .ethos-intro { padding: 0 48px 48px; display: flex; align-items: baseline; gap: 24px; }
+  .ethos-intro-label { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #9f9b93; white-space: nowrap; }
+  .ethos-intro-rule { flex: 1; height: 1px; background: var(--oat); }
+
+  .ethos-band { display: grid; grid-template-columns: 340px 1fr; min-height: 200px; margin-bottom: 2px; align-items: stretch; }
+
+  .ethos-band-left { padding: 16px 0 16px 48px; display: flex; align-items: stretch; }
+  .ethos-pill {
+    position: relative; flex: 1;
+    border-radius: 40px 80px 80px 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 32px 40px; overflow: hidden;
+  }
+  .ethos-pill::after { content: attr(data-word); position: absolute; font-family: 'Bebas Neue', sans-serif; font-size: 130px; line-height: 1; color: rgba(0,0,0,0.08); bottom: -20px; right: -12px; pointer-events: none; white-space: nowrap; }
+  .ethos-pill-num { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: rgba(255,255,255,0.5); }
+  .ethos-pill-word { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; letter-spacing: 1px; color: #fff; position: relative; z-index: 1; }
+
+  /* Right panel — contained, doesn't bleed to screen edge */
+  .ethos-band-right {
+    /* Dot grid bleeds through (transparent bg) but a soft cream wash keeps it readable */
+    background: rgba(250,249,247,0.88);
+    border-top: 1px solid var(--oat);
+    border-bottom: 1px solid var(--oat);
+    /* Right edge matches the left pill's left padding — contained, not full-bleed */
+    margin-right: 48px;
+    border-right: 1px solid var(--oat);
+    border-radius: 0 16px 16px 0;
+    padding: 36px 48px;
+    display: flex; flex-direction: column; justify-content: center;
+    gap: 20px;
+  }
+  .ethos-right-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; }
+  .ethos-right-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #bbb; margin-bottom: 6px; }
+  .ethos-right-heading { font-size: 22px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; line-height: 1.3; }
+
+  .ethos-stat-circle { width: 100px; height: 100px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex-shrink: 0; }
+  .ethos-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 34px; line-height: 1; color: #fff; }
+  .ethos-stat-label { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 2px; }
+
+  .ethos-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ethos-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.3px; padding: 6px 14px; border-radius: 1000px; border: 1.5px solid; background: transparent; }
+
+  .ethos-quote { font-size: 13px; font-style: italic; color: #9f9b93; border-left: 2px solid var(--oat); padding-left: 14px; line-height: 1.6; }
+
+  /* ── SCHEDULE ── */
+  .schedule {
+    margin-top: 80px; padding: 80px 48px;
+    background-color: #2a2420;
+    background-image: url('topo-dark.svg');
+    background-size: 700px 460px;
+    border-radius: 32px;
+    overflow: hidden;
+    margin-left: 48px; margin-right: 48px;
+  }
+  .schedule-heading-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; padding-bottom: 24px; border-bottom: 1px solid #3d3730; }
+  .schedule-title { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 0.95; letter-spacing: 2px; color: #fff; }
+  .schedule-sub { font-size: 13px; color: #7a7065; line-height: 1.7; text-align: right; }
+
+  .schedule-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+
+  .schedule-group { padding: 28px 32px; position: relative; overflow: hidden; }
+  .schedule-group:first-child { border-radius: 20px 0 0 20px; }
+  .schedule-group:last-child  { border-radius: 0 20px 20px 0; }
+  .schedule-group::before { content: attr(data-texture); position: absolute; right: -10px; bottom: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 160px; line-height: 1; color: rgba(255,255,255,0.03); pointer-events: none; }
+  .schedule-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .schedule-group-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .schedule-group-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
+  .schedule-group-loc { font-size: 11px; color: #55504a; margin-left: auto; }
+
+  .run-entry { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .run-entry:last-child { border-bottom: none; }
+  .run-entry-top { display: flex; align-items: baseline; justify-content: space-between; }
+  .run-entry-day { font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; }
+  .run-entry-time { font-size: 13px; font-weight: 700; }
+  .run-entry-name { font-size: 15px; font-weight: 600; color: #e0d8d0; margin-top: 2px; }
+  .run-entry-location { font-size: 11px; color: #55504a; margin-top: 2px; }
+
+  .schedule-coffee {
+    background: rgba(20,17,14,0.75); padding: 28px 32px;
+    display: flex; align-items: center; gap: 32px;
+    justify-content: space-between;
+    border-top: 2px solid var(--lemon);
+    border-radius: 0 0 20px 20px;
+  }
+  .coffee-day { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--lemon); }
+  .coffee-detail {}
+  .coffee-name { font-size: 20px; font-weight: 600; color: #e0d8d0; }
+  .coffee-sub { font-size: 12px; color: #55504a; margin-top: 4px; letter-spacing: 0.3px; }
+
+  .coffee-pill {
+    background: var(--lemon); color: var(--ink);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.3px;
+    padding: 12px 24px; border-radius: 1000px; border: none;
+    cursor: pointer; white-space: nowrap;
+  }
+
+  /* ── FOOTER ── */
+  footer { background: #1e1a17; padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #2a2420; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
+  .footer-social { display: flex; gap: 20px; }
+  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
+  .footer-copy { font-size: 11px; color: #3d3730; }
+</style>
 </head>
 <body>
-  	<header>
-		<a href="index.html">
-			<h2 id="logo">Love Running </h2>
-		</a>
 
-		<nav>
-			<ul id="menu">
-                <li>
-                    <a href="signup.html">Sign Up</a>
-                </li>
-                <li>
-                    <a href="gallery.html">Gallery</a>
-                </li>
+<nav>
+  <div class="nav-logo">Love Running</div>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#">Gallery</a>
+    <a href="#">Sign Up</a>
+  </div>
+</nav>
 
-                <li>
-                    <a class="active" href="index.html">Home</a>
-                </li>
-            </ul>
-		</nav>
-	</header>
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-curve">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,100 C320,100 820,10 1440,0 L1440,100 Z" fill="#faf9f7"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Dublin Running Club</div>
+    <div class="hero-heading">Love<br><span>Running</span></div>
+    <div class="hero-sub">Docklands &amp; Phoenix Park · Every week</div>
+    <button class="hero-cta">Join the Club</button>
+  </div>
+</section>
 
-	<section id="hero-outer">
-		<div id="hero-image">
-		</div>
+<section class="ethos">
+  <div class="ethos-intro">
+    <div class="ethos-intro-label">Why run with us</div>
+    <div class="ethos-intro-rule"></div>
+  </div>
 
-        <div id="cover-text">
-        <h2>Love Running</h2>
-        <h3>Dublin Docklands & Phoenix Park</h3>
-        </div>
-        
-	</section>
-
-	<section id="club-ethos">
-        <h2 id="welcome">Why love running with us?</h2>
-
-        <div id="left-about">   
-           <div class="left-about-heading">
-               <h2 >FEEL HEALTHY <i class="fas fa-heartbeat"></i></h2>
-               <hr>
-               <p>Since it improves aerobic fitness, running is a great way to help improve your cardiovascular health. Plus, it burns calories and can build strength.</p>
-           </div>
-           <div class="left-about-heading">
-               <h2>Feel FREE <i class="fas fa-globe"></i></h2>
-               <hr>
-               <p>Physical exercise, running included, is known to release endorphins in the brain. Endorphins make you more energetic, more awake and, yes, happier.</p>
-           </div>
-        </div>
-
-        <div id="right-about">
-             <div class="right-about-heading">
-               <h2><i class="far fa-user"></i> Get Social</h2>
-               <hr>
-               <p>When we run with others, we can run farther and faster more easily. Social running can pull you out of a running funk or low mood, inspire you to try new events.</p>
-           </div>
-
-            <div class="right-about-heading">
-               <h2><i class="fas fa-dumbbell"></i> Feel Strong</h2>
-               <hr>
-               <p>Running strengthens your heart by pumping blood more effectively through your body.</p>
-           </div>
-        </div>
-
-        <div id="center-about"> 
-            <div id="circle-container">
-                <div id="circle-cover-bg">
-                </div>
-            </div>
-        </div>
-
-	</section>
-
-	<section id="times">
-		<div>
-            <h2><i class="fas fa-building"></i> Urban</h2>
-            <h3>Monday</h3>
-            <h3>5k</h3>
-            <h3>The Marker Hotel</h3>
-            <h3>18:30</h3>
-        </div>
-
+  <div class="ethos-band">
+    <div class="ethos-band-left">
+      <div class="ethos-pill" style="background: var(--matcha);" data-word="HEALTHY">
+        <div class="ethos-pill-num">01</div>
+        <div class="ethos-pill-word">Feel<br>Healthy</div>
+      </div>
+    </div>
+    <div class="ethos-band-right">
+      <div class="ethos-right-top">
         <div>
-            <h2><i class="fas fa-tree"></i> Trail</h2>
-            <h3>Tuesday</h3>
-            <h3>10k</h3>
-            <h3>Phoenix Park</h3>
-            <h3>18:30</h3>
+          <div class="ethos-right-label">01 · Health</div>
+          <div class="ethos-right-heading">The first run is the hardest.<br>Everything after gets better.</div>
         </div>
+        <div class="ethos-stat-circle" style="background: var(--matcha);">
+          <div class="ethos-stat-num">5k</div>
+          <div class="ethos-stat-label">to start</div>
+        </div>
+      </div>
+      <div class="ethos-tags">
+        <div class="ethos-tag" style="color:#02492a; border-color: var(--matcha);">↑ Aerobic fitness</div>
+        <div class="ethos-tag" style="color:#02492a; border-color: var(--matcha);">♥ Stronger heart</div>
+        <div class="ethos-tag" style="color:#02492a; border-color: var(--matcha);">🔋 More energy daily</div>
+        <div class="ethos-tag" style="color:#02492a; border-color: var(--matcha);">💤 Better sleep</div>
+      </div>
+      <div class="ethos-quote">"I came for the fitness. I stayed for everything else." — Club member since 2023</div>
+    </div>
+  </div>
 
+  <div class="ethos-band">
+    <div class="ethos-band-left">
+      <div class="ethos-pill" style="background: var(--slushie);" data-word="STRONG">
+        <div class="ethos-pill-num">02</div>
+        <div class="ethos-pill-word">Feel<br>Strong</div>
+      </div>
+    </div>
+    <div class="ethos-band-right">
+      <div class="ethos-right-top">
         <div>
-            <h2><i class="fas fa-building"></i> Urban</h2>
-            <h3>Friday</h3>
-            <h3>5k</h3>
-            <h3>The Marker Hotel</h3>
-            <h3>17:00</h3>
+          <div class="ethos-right-label">02 · Strength</div>
+          <div class="ethos-right-heading">You're stronger than<br>you think. We'll prove it.</div>
         </div>
+        <div class="ethos-stat-circle" style="background: var(--slushie);">
+          <div class="ethos-stat-num">10k</div>
+          <div class="ethos-stat-label">trail runs</div>
+        </div>
+      </div>
+      <div class="ethos-tags">
+        <div class="ethos-tag" style="color:#00374a; border-color: var(--slushie);">🏃 Cardiovascular base</div>
+        <div class="ethos-tag" style="color:#00374a; border-color: var(--slushie);">💪 Leg &amp; core strength</div>
+        <div class="ethos-tag" style="color:#00374a; border-color: var(--slushie);">🧠 Mental resilience</div>
+      </div>
+      <div class="ethos-quote">"Trail running on a Tuesday evening completely changed how I handle pressure." — Member, Phoenix Park</div>
+    </div>
+  </div>
 
+  <div class="ethos-band">
+    <div class="ethos-band-left">
+      <div class="ethos-pill" style="background: var(--ube);" data-word="SOCIAL">
+        <div class="ethos-pill-num">03</div>
+        <div class="ethos-pill-word">Get<br>Social</div>
+      </div>
+    </div>
+    <div class="ethos-band-right">
+      <div class="ethos-right-top">
         <div>
-            <h2><i class="fas fa-tree"></i> Trail</h2>
-            <h3>Saturday</h3>
-            <h3>10k</h3>
-            <h3>Phoenix Park</h3>
-            <h3>09:30</h3>
+          <div class="ethos-right-label">03 · Community</div>
+          <div class="ethos-right-heading">Nobody runs alone here.<br>Not on their first day, not ever.</div>
         </div>
-
-        <div>
-            <h2><i class="fas fa-coffee"></i> Coffee</h2>
-            <h3>Sunday</h3>
-            <h3>No Running</h3>
-            <h3>The Marker Hotel</h3>
-            <h3>11:30</h3>
+        <div class="ethos-stat-circle" style="background: var(--ube);">
+          <div class="ethos-stat-num">5×</div>
+          <div class="ethos-stat-label">per week</div>
         </div>
-	</section>
+      </div>
+      <div class="ethos-tags">
+        <div class="ethos-tag" style="color:#32037d; border-color: var(--ube);">☕ Sunday coffee runs</div>
+        <div class="ethos-tag" style="color:#32037d; border-color: var(--ube);">🗓 Weekly social events</div>
+        <div class="ethos-tag" style="color:#32037d; border-color: var(--ube);">📍 Two Dublin locations</div>
+        <div class="ethos-tag" style="color:#32037d; border-color: var(--ube);">🤝 All paces welcome</div>
+      </div>
+      <div class="ethos-quote">"Showed up not knowing anyone. Left with a running group that became actual friends." — Member, 2024</div>
+    </div>
+  </div>
+</section>
 
-	<footer>
-		<ul class="social-networks">
-            <li>
-            <a href="https://www.facebook.com/" target="_blank" ><i class="fab fa-facebook-f"></i> </a>   
-            </li>
+<section class="schedule">
+  <div class="schedule-heading-row">
+    <div class="schedule-title">This<br>Week's<br>Runs</div>
+    <div class="schedule-sub">Dublin Docklands<br>&amp; Phoenix Park<br>All paces welcome</div>
+  </div>
 
-            <li>
-            <a href="https://www.twitter.com/" target="_blank" ><i class="fab fa-twitter"></i></a>   
-            </li>
+  <div class="schedule-cols">
+    <div class="schedule-group" style="background: rgba(30,40,32,0.72);" data-texture="URBAN">
+      <div class="schedule-group-header">
+        <div class="schedule-group-dot" style="background: var(--matcha);"></div>
+        <div class="schedule-group-name" style="color: var(--matcha);">Urban Runs</div>
+        <div class="schedule-group-loc">The Marker · Docklands</div>
+      </div>
+      <div class="run-entry">
+        <div class="run-entry-top">
+          <div class="run-entry-day" style="color: var(--matcha);">MON</div>
+          <div class="run-entry-time" style="color: var(--matcha);">18:30</div>
+        </div>
+        <div class="run-entry-name">5k Urban Run</div>
+        <div class="run-entry-location">Grand Canal Dock</div>
+      </div>
+      <div class="run-entry">
+        <div class="run-entry-top">
+          <div class="run-entry-day" style="color: var(--ube);">FRI</div>
+          <div class="run-entry-time" style="color: var(--ube);">17:00</div>
+        </div>
+        <div class="run-entry-name">5k Urban Run</div>
+        <div class="run-entry-location">Grand Canal Dock</div>
+      </div>
+    </div>
 
-            <li>
-            <a href="https://www.youtube.com/" target="_blank" ><i class="fab fa-youtube"></i></a>   
-            </li>
+    <div class="schedule-group" style="background: rgba(19,32,40,0.72);" data-texture="TRAIL">
+      <div class="schedule-group-header">
+        <div class="schedule-group-dot" style="background: var(--slushie);"></div>
+        <div class="schedule-group-name" style="color: var(--slushie);">Trail Runs</div>
+        <div class="schedule-group-loc">Phoenix Park</div>
+      </div>
+      <div class="run-entry">
+        <div class="run-entry-top">
+          <div class="run-entry-day" style="color: var(--slushie);">TUE</div>
+          <div class="run-entry-time" style="color: var(--slushie);">18:30</div>
+        </div>
+        <div class="run-entry-name">10k Trail Run</div>
+        <div class="run-entry-location">Main Gate entrance</div>
+      </div>
+      <div class="run-entry">
+        <div class="run-entry-top">
+          <div class="run-entry-day" style="color: var(--pomegranate);">SAT</div>
+          <div class="run-entry-time" style="color: var(--pomegranate);">09:30</div>
+        </div>
+        <div class="run-entry-name">10k Trail Run</div>
+        <div class="run-entry-location">Main Gate entrance</div>
+      </div>
+    </div>
+  </div>
 
-            <li>
-            <a href="https://www.instagram.com/" target="_blank" ><i class="fab fa-instagram"></i></a>   
-            </li>
+  <!-- Sunday: event invite with ticket stub -->
+  <div class="schedule-coffee">
+    <div class="coffee-day">SUN</div>
+    <div class="coffee-detail">
+      <div class="coffee-name">Coffee &amp; Chat</div>
+      <div class="coffee-sub">The Marker Hotel · Grand Canal Dock · 11:30 · No run required</div>
+    </div>
+    <button class="coffee-pill">Join the run →</button>
+  </div>
+</section>
 
-		</ul>
-	</footer>
-  
+<footer>
+  <div class="footer-logo">Love Running</div>
+  <div class="footer-social">
+    <a href="#">FB</a><a href="#">IG</a><a href="#">TW</a><a href="#">YT</a>
+  </div>
+  <div class="footer-copy">© 2026 Love Running Dublin</div>
+</footer>
+
 </body>
 </html>

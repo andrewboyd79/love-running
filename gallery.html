@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Love Running</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --matcha: #84e7a5; --slushie: #0089ad; --ube: #c1b0ff;
+    --pomegranate: #fc7981; --lemon: #fbbd41;
+    --cream: #faf9f7; --oat: #dad4c8; --ink: #0d0d0d;
+  }
+  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 48px;
+    background: rgba(42,36,32,0.88); backdrop-filter: blur(8px);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: #fff; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); text-decoration: none; }
+  .nav-links a.active { color: #fff; border-bottom: 1.5px solid #fff; padding-bottom: 1px; }
+
+  /* HERO — Film Strip */
+  .hero {
+    background-color: #2a2420;
+    background-image: url('topo-dark.svg');
+    background-size: 700px 460px;
+    background-repeat: repeat;
+    padding: 120px 48px 0;
+  }
+  .hero-inner {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding-bottom: 48px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 10vw, 128px);
+    line-height: 0.88; letter-spacing: 2px; color: #fff;
+  }
+  .hero-title span { color: transparent; -webkit-text-stroke: 2px var(--lemon); }
+  .hero-meta { text-align: right; max-width: 260px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--lemon); margin-bottom: 12px; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+
+  /* Film strip */
+  .film-strip {
+    display: flex; gap: 8px; align-items: flex-end;
+    margin-left: -48px; margin-right: -48px;
+    padding-left: 48px; padding-right: 48px;
+    overflow: hidden; position: relative;
+  }
+  .film-strip::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 28px;
+    background: repeating-linear-gradient(90deg,
+      transparent 0px, transparent 18px,
+      rgba(0,0,0,0.35) 18px, rgba(0,0,0,0.35) 26px
+    );
+  }
+  .strip-photo {
+    flex-shrink: 0; border-radius: 4px 4px 0 0; overflow: hidden; position: relative;
+  }
+  .strip-photo:nth-child(1) { width: 260px; height: 200px; background: linear-gradient(135deg, #8dd6f0 0%, #b8eaf8 100%); }
+  .strip-photo:nth-child(2) { width: 180px; height: 160px; background: linear-gradient(135deg, #b2f0cb 0%, #d4f7e4 100%); }
+  .strip-photo:nth-child(3) { width: 220px; height: 220px; background: linear-gradient(135deg, #fca5ab 0%, #fdd0d3 100%); }
+  .strip-photo:nth-child(4) { width: 160px; height: 140px; background: linear-gradient(135deg, #c1b0ff 0%, #ddd5ff 100%); }
+  .strip-photo:nth-child(5) { width: 280px; height: 190px; background: linear-gradient(135deg, #f8cc65 0%, #fde8a8 100%); }
+  .strip-photo:nth-child(6) { width: 200px; height: 175px; background: linear-gradient(135deg, #e8e2d8 0%, #f2ede6 100%); }
+  .strip-photo:nth-child(7) { width: 240px; height: 200px; background: linear-gradient(135deg, #8dd6f0 0%, #b8eaf8 100%); }
+  .strip-photo-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    opacity: 0.3;
+  }
+  .strip-photo-inner svg { width: 28px; height: 28px; }
+  .strip-photo-inner span { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+
+  /* Hero filter bar */
+  .hero-bar {
+    background: var(--cream); border-bottom: 1px solid var(--oat);
+    padding: 20px 48px;
+    display: flex; gap: 16px; align-items: center;
+  }
+  .hero-bar-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,0,0,0.05); border-radius: 100px;
+    padding: 6px 16px; font-size: 12px; font-weight: 500; color: #55534e;
+  }
+  .hero-bar-pill-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .hero-bar-scroll { margin-left: auto; font-size: 12px; color: #9f9b93; }
+
+  /* EDITORIAL GRID */
+  .gallery-section {
+    padding: 64px 48px;
+    background-image: url('topo-light.svg');
+    background-size: 700px 460px;
+    background-repeat: repeat;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #9f9b93;
+    display: flex; align-items: center; gap: 16px; margin-bottom: 32px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--oat); }
+
+  /* Feature row: 1 big + 2 small */
+  .grid-feature {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .grid-feature .photo-main { grid-row: 1 / 3; }
+
+  /* Uniform small grid */
+  .grid-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* Asymmetric row */
+  .grid-asymmetric {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  /* Quote block */
+  .grid-quote {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: stretch;
+  }
+
+  /* Photo placeholder */
+  .photo {
+    position: relative; overflow: hidden;
+    border-radius: 4px;
+  }
+  .photo-main { min-height: 480px; }
+  .photo-sm   { min-height: 230px; }
+  .photo-med  { min-height: 320px; }
+  .photo-tall { min-height: 400px; }
+
+  /* Swatch-tinted photo placeholders — lighter 300-series tones */
+  .p-matcha   { background: linear-gradient(135deg, #b2f0cb 0%, #d4f7e4 100%); }
+  .p-slushie  { background: linear-gradient(135deg, #8dd6f0 0%, #b8eaf8 100%); }
+  .p-ube      { background: linear-gradient(135deg, #c1b0ff 0%, #ddd5ff 100%); }
+  .p-pomeg    { background: linear-gradient(135deg, #fca5ab 0%, #fdd0d3 100%); }
+  .p-lemon    { background: linear-gradient(135deg, #f8cc65 0%, #fde8a8 100%); }
+  .p-dark     { background: linear-gradient(135deg, #55534e 0%, #7a7570 100%); }
+  .p-warm     { background: linear-gradient(135deg, #e8e2d8 0%, #f2ede6 100%); }
+
+  /* Photo indicator overlay */
+  .photo-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+    opacity: 0.35;
+  }
+  .photo-placeholder svg { width: 40px; height: 40px; }
+  .photo-placeholder-text { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(0,0,0,0.5); }
+
+  /* Photo overlay label */
+  .photo-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 40px 20px 16px;
+    background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+  }
+  .photo-label-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 1px; color: #fff;
+  }
+  .photo-label-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+  /* Pull quote block */
+  .quote-block {
+    background-color: #2a2420;
+    background-image: url('topo-dark.svg');
+    background-size: 700px 460px;
+    background-position: center;
+    border-radius: 4px;
+    padding: 48px 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .quote-mark { font-family: 'Bebas Neue', sans-serif; font-size: 80px; color: var(--lemon); line-height: 0.7; }
+  .quote-text { font-size: 20px; font-weight: 600; color: #fff; line-height: 1.5; letter-spacing: -0.2px; flex: 1; display: flex; align-items: center; }
+  .quote-author { font-size: 11px; color: #7a7065; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px; }
+
+  .quote-block-light {
+    background-color: #1e3028;
+    background-image: url('topo-dark.svg');
+    background-size: 700px 460px;
+    background-position: center;
+    border-radius: 4px;
+    padding: 48px 40px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: relative; overflow: hidden;
+  }
+  .quote-block-light .quote-mark { color: var(--matcha); }
+  .quote-block-light .quote-text { color: #fff; }
+  .quote-block-light .quote-author { color: rgba(255,255,255,0.45); }
+
+  footer {
+    background: var(--ink); padding: 32px 48px; margin-top: 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
+  .footer-social { display: flex; gap: 20px; }
+  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
+  .footer-copy { font-size: 11px; color: #3d3730; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Love Running</div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#" class="active">Gallery</a>
+    <a href="#">Sign Up</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-title">Our Runs,<br><span>Our People</span></div>
+    <div class="hero-meta">
+      <div class="hero-eyebrow">Dublin Running Club</div>
+      <div class="hero-sub">Five days a week, rain or shine, across Dublin's Docklands and Phoenix Park.</div>
+    </div>
+  </div>
+  <div class="film-strip">
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+    <div class="strip-photo"><div class="strip-photo-inner"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg><span>Photo</span></div></div>
+  </div>
+</div>
+<div class="hero-bar">
+  <div class="hero-bar-pill"><div class="hero-bar-pill-dot" style="background: var(--matcha);"></div> Urban Runs</div>
+  <div class="hero-bar-pill"><div class="hero-bar-pill-dot" style="background: var(--slushie);"></div> Trail Runs</div>
+  <div class="hero-bar-pill"><div class="hero-bar-pill-dot" style="background: var(--lemon);"></div> After Run Social</div>
+  <div class="hero-bar-scroll">Scroll to explore ↓</div>
+</div>
+
+<!-- URBAN RUNS -->
+<section class="gallery-section">
+  <div class="section-label" style="--dot: var(--matcha);">Urban Runs · The Marker, Docklands</div>
+
+  <div class="grid-feature">
+    <div class="photo photo-main p-slushie">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">Monday Night Run</div>
+        <div class="photo-label-sub">Grand Canal Dock · 18:30</div>
+      </div>
+    </div>
+    <div class="photo photo-sm p-warm">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+    </div>
+    <div class="photo photo-sm p-matcha">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">Friday 5k</div>
+        <div class="photo-label-sub">17:00 · All paces</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-quote">
+    <div class="quote-block">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">I never thought I'd look forward to a Monday. Then I found this crew.</div>
+      <div class="quote-author">Sarah · Member since 2022</div>
+    </div>
+    <div class="photo photo-med p-pomeg">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">After the run</div>
+        <div class="photo-label-sub">The Marker Hotel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAIL RUNS -->
+<section class="gallery-section" style="padding-top: 0;">
+  <div class="section-label">Trail Runs · Phoenix Park</div>
+
+  <div class="grid-strip">
+    <div class="photo photo-med p-dark">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text" style="color: rgba(255,255,255,0.5);">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">Tuesday Trail</div>
+        <div class="photo-label-sub">10k · 18:30</div>
+      </div>
+    </div>
+    <div class="photo photo-med p-matcha">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+    </div>
+    <div class="photo photo-med p-slushie">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">Saturday Morning</div>
+        <div class="photo-label-sub">09:30 · Phoenix Park</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-asymmetric">
+    <div class="photo photo-tall p-ube">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+    </div>
+    <div class="photo photo-tall p-lemon">
+      <div class="photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a1 1 0 011-1h6a1 1 0 011 1v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+        <div class="photo-placeholder-text">Photo</div>
+      </div>
+      <div class="photo-label">
+        <div class="photo-label-text">The long way round</div>
+        <div class="photo-label-sub">10k through the deer park</div>
+      </div>
+    </div>
+    <div class="quote-block-light photo-tall">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">The park at 9am on a Saturday is a completely different world.</div>
+      <div class="quote-author">Liam · Trail runner</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Love Running</div>
+  <div class="footer-social"><a href="#">FB</a><a href="#">IG</a><a href="#">TW</a><a href="#">YT</a></div>
+  <div class="footer-copy">© 2026 Love Running Dublin</div>
+</footer>
+
+</body>
+</html>

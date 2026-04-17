@@ -154,6 +154,41 @@
   .footer-social { display: flex; gap: 20px; }
   .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
   .footer-copy { font-size: 11px; color: #3d3730; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 767px) {
+    /* Nav */
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+
+    /* Hero */
+    .hero-content { padding: 0 20px 60px; }
+    .hero-heading { font-size: clamp(48px, 12vw, 72px); }
+
+    /* Ethos */
+    .ethos { margin-top: 48px; }
+    .ethos-intro { padding: 0 20px 32px; }
+    .ethos-band { grid-template-columns: 1fr; min-height: unset; }
+    .ethos-band-left { padding: 16px 20px 0; }
+    .ethos-pill { border-radius: 20px; }
+    .ethos-band-right { margin-right: 20px; margin-left: 20px; border-radius: 16px; padding: 24px 20px; }
+    .ethos-right-top { flex-direction: column; gap: 16px; }
+    .ethos-stat-circle { width: 72px; height: 72px; }
+    .ethos-stat-num { font-size: 24px; }
+
+    /* Schedule */
+    .schedule { margin-left: 12px; margin-right: 12px; padding: 40px 20px; border-radius: 20px; }
+    .schedule-heading-row { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 32px; }
+    .schedule-title { font-size: 52px; }
+    .schedule-sub { text-align: left; }
+    .schedule-cols { grid-template-columns: 1fr; }
+    .schedule-group:first-child { border-radius: 20px 20px 0 0; }
+    .schedule-group:last-child  { border-radius: 0 0 20px 20px; }
+    .schedule-coffee { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+    /* Footer */
+    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+  }
 </style>
 </head>
 <body>

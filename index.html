@@ -8,33 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --matcha: #84e7a5;
-    --slushie: #0089ad;
-    --ube: #c1b0ff;
-    --pomegranate: #fc7981;
-    --lemon: #fbbd41;
-    --cream: #faf9f7;
-    --oat: #dad4c8;
-    --ink: #0d0d0d;
-  }
-  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--oat);
-  }
-  .nav-logo { text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: #55534e; text-decoration: none; }
-  .nav-links a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
-
   /* ── HERO ── */
   .hero { height: 100vh; position: relative; overflow: hidden; }
   .hero-img { position: absolute; inset: 0; background: url('https://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/main-image.png') center/cover no-repeat; }
@@ -102,16 +77,16 @@
   /* ── SCHEDULE ── */
   .schedule {
     margin-top: 80px; padding: 80px 48px;
-    background-color: #2a2420;
+    background-color: var(--bark);
     background-image: url('topo-dark.svg');
     background-size: 700px 460px;
     border-radius: 32px;
     overflow: hidden;
     margin-left: 48px; margin-right: 48px;
   }
-  .schedule-heading-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; padding-bottom: 24px; border-bottom: 1px solid #3d3730; }
+  .schedule-heading-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 52px; padding-bottom: 24px; border-bottom: 1px solid var(--wood); }
   .schedule-title { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 0.95; letter-spacing: 2px; color: #fff; }
-  .schedule-sub { font-size: 13px; color: #7a7065; line-height: 1.7; text-align: right; }
+  .schedule-sub { font-size: 13px; color: var(--pebble); line-height: 1.7; text-align: right; }
 
   .schedule-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
 
@@ -122,7 +97,7 @@
   .schedule-group-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .schedule-group-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
   .schedule-group-name { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; }
-  .schedule-group-loc { font-size: 11px; color: #55504a; margin-left: auto; }
+  .schedule-group-loc { font-size: 11px; color: var(--stone); margin-left: auto; }
 
   .run-entry { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
   .run-entry:last-child { border-bottom: none; }
@@ -130,7 +105,7 @@
   .run-entry-day { font-family: 'Bebas Neue', sans-serif; font-size: 28px; line-height: 1; }
   .run-entry-time { font-size: 13px; font-weight: 700; }
   .run-entry-name { font-size: 15px; font-weight: 600; color: #e0d8d0; margin-top: 2px; }
-  .run-entry-location { font-size: 11px; color: #55504a; margin-top: 2px; }
+  .run-entry-location { font-size: 11px; color: var(--stone); margin-top: 2px; }
 
   .schedule-coffee {
     background: rgba(20,17,14,0.75); padding: 28px 32px;
@@ -142,7 +117,7 @@
   .coffee-day { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--lemon); }
   .coffee-detail {}
   .coffee-name { font-size: 20px; font-weight: 600; color: #e0d8d0; }
-  .coffee-sub { font-size: 12px; color: #55504a; margin-top: 4px; letter-spacing: 0.3px; }
+  .coffee-sub { font-size: 12px; color: var(--stone); margin-top: 4px; letter-spacing: 0.3px; }
 
   .coffee-pill {
     background: var(--lemon); color: var(--ink);
@@ -151,19 +126,12 @@
     cursor: pointer; white-space: nowrap;
   }
 
-  /* ── FOOTER ── */
-  footer { background: #1e1a17; padding: 32px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #2a2420; }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
-  .footer-social { display: flex; gap: 20px; }
-  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
-  .footer-copy { font-size: 11px; color: #3d3730; }
+  /* ── FOOTER — index-specific override ── */
+  /* Shared default is var(--ink); index uses a warmer dark with a border-top */
+  footer { background: var(--espresso); border-top: 1px solid var(--bark); }
 
   /* ── MOBILE ── */
   @media (max-width: 767px) {
-    /* Nav */
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-
     /* Hero */
     .hero-content { padding: 0 20px 60px; }
     .hero-heading { font-size: clamp(48px, 12vw, 72px); }
@@ -188,9 +156,6 @@
     .schedule-group:first-child { border-radius: 20px 20px 0 0; }
     .schedule-group:last-child  { border-radius: 0 0 20px 20px; }
     .schedule-coffee { flex-direction: column; align-items: flex-start; gap: 16px; }
-
-    /* Footer */
-    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
   }
 </style>
 </head>

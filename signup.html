@@ -8,27 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --matcha: #84e7a5; --slushie: #0089ad; --ube: #c1b0ff;
-    --pomegranate: #fc7981; --lemon: #fbbd41;
-    --cream: #faf9f7; --oat: #dad4c8; --ink: #0d0d0d;
-  }
-  body { background: var(--cream); font-family: 'DM Sans', sans-serif; }
-
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 48px;
-    background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--oat);
-  }
-  .nav-logo { text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); }
-  .nav-links { display: flex; gap: 32px; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: #55534e; text-decoration: none; }
-  .nav-links a.active { color: var(--ink); border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; }
-
   /* SPLIT LAYOUT: left = invitation, right = form */
   .signup-wrap {
     display: grid;
@@ -41,7 +22,7 @@
 
   /* LEFT: invitation panel */
   .invite-panel {
-    background-color: #2a2420;
+    background-color: var(--bark);
     background-image: url('topo-dark.svg');
     background-size: 700px 460px;
     padding: 140px 64px 80px;
@@ -60,7 +41,7 @@
   }
   .invite-heading span { color: var(--lemon); }
   .invite-sub {
-    font-size: 15px; color: #7a7065; line-height: 1.75;
+    font-size: 15px; color: var(--pebble); line-height: 1.75;
     margin-top: 20px; max-width: 340px;
   }
 
@@ -68,17 +49,17 @@
   .invite-schedule { margin-top: 48px; }
   .invite-schedule-label {
     font-size: 10px; font-weight: 600; letter-spacing: 2px;
-    text-transform: uppercase; color: #55504a; margin-bottom: 14px;
+    text-transform: uppercase; color: var(--stone); margin-bottom: 14px;
   }
   .invite-run {
     display: flex; align-items: center; gap: 14px;
-    padding: 10px 0; border-bottom: 1px solid #3d3730;
+    padding: 10px 0; border-bottom: 1px solid var(--wood);
   }
   .invite-run:last-child { border-bottom: none; }
   .invite-run-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .invite-run-day { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #fff; width: 44px; flex-shrink: 0; }
   .invite-run-name { font-size: 13px; font-weight: 500; color: #e0d8d0; flex: 1; }
-  .invite-run-time { font-size: 12px; color: #55504a; }
+  .invite-run-time { font-size: 12px; color: var(--stone); }
 
   /* Member count */
   .invite-bottom {
@@ -87,10 +68,10 @@
   .invite-avatars { display: flex; }
   .invite-avatar {
     width: 36px; height: 36px; border-radius: 50%;
-    border: 2px solid #2a2420; margin-left: -10px;
+    border: 2px solid var(--bark); margin-left: -10px;
   }
   .invite-avatar:first-child { margin-left: 0; }
-  .invite-member-text { font-size: 13px; color: #7a7065; line-height: 1.5; }
+  .invite-member-text { font-size: 13px; color: var(--pebble); line-height: 1.5; }
   .invite-member-text strong { color: #fff; }
 
   /* RIGHT: form panel */
@@ -156,21 +137,8 @@
   .form-submit:hover { background: var(--lemon); color: var(--ink); }
   .form-note { font-size: 11px; color: #bbb; text-align: center; margin-top: 14px; }
 
-  footer {
-    background: var(--ink); padding: 32px 48px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3d3730; }
-  .footer-social { display: flex; gap: 20px; }
-  .footer-social a { font-size: 11px; color: #3d3730; text-decoration: none; letter-spacing: 1.5px; text-transform: uppercase; }
-  .footer-copy { font-size: 11px; color: #3d3730; }
-
   /* ── MOBILE ── */
   @media (max-width: 767px) {
-    /* Nav */
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-
     /* Signup split — stack to single column */
     .signup-wrap {
       grid-template-columns: 1fr;
@@ -194,9 +162,6 @@
 
     /* Run options — stack to single column */
     .run-options { grid-template-columns: 1fr; }
-
-    /* Footer */
-    footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
   }
 </style>
 </head>

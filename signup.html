@@ -130,10 +130,13 @@
     transition: all 0.2s;
   }
   .run-option:hover { border-color: var(--ink); }
-  .run-option.selected { border-color: var(--matcha); background: rgba(132,231,165,0.08); }
   .run-option:has(:checked) {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.4);
+    background: rgba(132,231,165,0.08);
+    border-color: var(--matcha);
+  }
+  .run-option:focus-within {
+    outline: 2px solid var(--slushie);
+    outline-offset: 2px;
   }
   .run-option-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 8px; }
   .run-option-name { font-size: 12px; font-weight: 600; color: var(--ink); }
@@ -250,27 +253,29 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label" style="margin-bottom: 12px;">Which runs interest you?</label>
-        <div class="run-options">
-          <label class="run-option">
-            <input type="checkbox" name="run-type" value="urban" style="position: absolute; opacity: 0; pointer-events: none;">
-            <div class="run-option-dot" style="background: var(--matcha);"></div>
-            <div class="run-option-name">Urban 5k</div>
-            <div class="run-option-detail">Mon &amp; Fri</div>
-          </label>
-          <label class="run-option">
-            <input type="checkbox" name="run-type" value="trail" style="position: absolute; opacity: 0; pointer-events: none;">
-            <div class="run-option-dot" style="background: var(--slushie);"></div>
-            <div class="run-option-name">Trail 10k</div>
-            <div class="run-option-detail">Tue &amp; Sat</div>
-          </label>
-          <label class="run-option">
-            <input type="checkbox" name="run-type" value="sunday" style="position: absolute; opacity: 0; pointer-events: none;">
-            <div class="run-option-dot" style="background: var(--lemon);"></div>
-            <div class="run-option-name">Sunday ☕</div>
-            <div class="run-option-detail">Social only</div>
-          </label>
-        </div>
+        <fieldset style="border: none; padding: 0; margin: 0;">
+          <legend class="form-label" style="margin-bottom: 12px;">Which runs interest you?</legend>
+          <div class="run-options">
+            <label class="run-option">
+              <input type="checkbox" name="run-type" value="urban" style="position: absolute; opacity: 0; width: 1px; height: 1px; overflow: hidden;">
+              <div class="run-option-dot" style="background: var(--matcha);"></div>
+              <div class="run-option-name">Urban 5k</div>
+              <div class="run-option-detail">Mon &amp; Fri</div>
+            </label>
+            <label class="run-option">
+              <input type="checkbox" name="run-type" value="trail" style="position: absolute; opacity: 0; width: 1px; height: 1px; overflow: hidden;">
+              <div class="run-option-dot" style="background: var(--slushie);"></div>
+              <div class="run-option-name">Trail 10k</div>
+              <div class="run-option-detail">Tue &amp; Sat</div>
+            </label>
+            <label class="run-option">
+              <input type="checkbox" name="run-type" value="sunday" style="position: absolute; opacity: 0; width: 1px; height: 1px; overflow: hidden;">
+              <div class="run-option-dot" style="background: var(--lemon);"></div>
+              <div class="run-option-name">Sunday ☕</div>
+              <div class="run-option-detail">Social only</div>
+            </label>
+          </div>
+        </fieldset>
       </div>
 
       <button class="form-submit" type="submit">I'm in — sign me up</button>

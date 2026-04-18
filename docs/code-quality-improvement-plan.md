@@ -9,7 +9,8 @@
 This document records the full improvement lifecycle for the Love Running project. It covers two phases:
 
 1. **Phase 1 — Visual Redesign** *(completed 2026-04-17)*: A new design spec was defined and implemented across all three pages.
-2. **Phase 2 — Code Quality Remediation** *(in progress)*: Following a post-implementation code review, a prioritised set of fixes was identified to improve accessibility, semantics, responsiveness, and maintainability.
+2. **Phase 2 — Code Quality Remediation** *(completed 2026-04-17)*: Following a post-implementation code review, a prioritised set of fixes was identified to improve accessibility, semantics, responsiveness, and maintainability.
+3. **Phase 2c — Post-Deployment Follow-up** *(completed 2026-04-18)*: axe DevTools audit and manual mobile testing identified WCAG colour contrast failures and a missing mobile nav — both resolved.
 
 ---
 
@@ -118,9 +119,63 @@ All six remediation PRs merged to `master` on 2026-04-17.
 - gallery.html: Performance 100, Accessibility 85, Best Practices 100, SEO 90
 - signup.html: Performance 98, Accessibility 94, Best Practices 100, SEO 90
 
-**Post-remediation Lighthouse scores to be recorded.** Run against: https://andrewboyd79.github.io/love-running/
+**Post-remediation Lighthouse scores verified (2026-04-18):** Performance and SEO improvements vs. baseline confirmed on live GitHub Pages site. All Lighthouse acceptance criteria (issue #8) satisfied.
 
-**Estimated code review score:** 8.5–9.0 / 10 (up from 6.5 / 10)
+---
+
+## Phase 2c — Post-Deployment Follow-up Fixes
+
+After merging all Phase 2 PRs, axe DevTools was run against the live site and manual mobile testing was performed. Two categories of issues were found and resolved.
+
+### WCAG Colour Contrast Remediation
+
+axe DevTools reported multiple contrast ratio failures where white text was placed on light-coloured backgrounds. The design palette uses several pale accent colours (matcha green `#84e7a5`, ube purple `#c1b0ff`, lemon `#fbbd41`, slushie blue `#0089ad`) which do not meet the 3:1 minimum contrast ratio required for large bold text (WCAG 1.4.3).
+
+Fixes applied across 7 commits:
+
+| Commit | Fix |
+|---|---|
+| `7793338` | Initial pass — white text on coloured/dark surfaces across all pages |
+| `7a9700c` | Gallery hero scroll indicator `#9f9b93` → `#6b6560` |
+| `2b0515d` | Final WCAG pass — remaining white-on-light failures |
+| `7ad6435` | Ethos stat labels → `var(--ink)`; ethos pill words → `mix-blend-mode: multiply` |
+| `0146f66` | Hero "Running" pill, Docklands text, ethos pill contrast |
+| `2152ce2` | Dark ink text on HEALTHY (matcha) and SOCIAL (ube) ethos pills |
+| `6e642cd` | Replace `div` children with `span` inside run-option labels (semantic fix) |
+
+**Approach:** Rather than changing the palette, dark ink (`var(--ink)` / `#0d0d0d`) was applied per-element using targeted CSS selectors. This preserved the visual design while meeting contrast requirements.
+
+**Outcome:** axe DevTools reports **zero violations** on all three pages (index, gallery, signup).
+
+---
+
+### Mobile Navigation Fix
+
+During manual DevTools testing at 375px and 768px, the navigation was found to be completely absent — the PR #7 responsive breakpoint had set `.nav-links { display: none; }` with no replacement (no hamburger, no stacked alternative).
+
+**Fix (commit `465a192`):** Changed the mobile nav to stack logo above links rather than hide the links entirely. With only three nav items, a hamburger menu added unnecessary complexity. The fix uses two CSS rules:
+
+```css
+nav { flex-direction: column; align-items: flex-start; gap: 10px; }
+.nav-links { gap: 20px; }
+```
+
+This keeps the navigation fully visible and accessible at all viewport sizes.
+
+---
+
+### Issue Acceptance Criteria — Final Status
+
+All acceptance criteria across all 7 issues are now satisfied:
+
+| Issue | Topic | Status |
+|---|---|---|
+| #1 | Semantic HTML structure | All criteria met |
+| #3 | Accessibility (axe DevTools) | All criteria met — axe 0 violations confirmed |
+| #6 | Responsive design | All criteria met — manual DevTools verification completed |
+| #8 | Performance / Lighthouse | All criteria met — Lighthouse scores improved vs. baseline |
+| #10 | CSS architecture | All criteria met |
+| #12/#13 | Polish (favicon, footer, button) | All criteria met |
 
 ---
 
@@ -361,10 +416,14 @@ Option A is recommended — it works without JavaScript and is natively keyboard
 | FIX-13 | P3 | Footer colour consistency | `[x] Done (PR #14)` |
 | FIX-14 | P3 | `type="button"` on coffee pill | `[x] Done (PR #14)` |
 | FIX-15 | P3 | Delete legacy style.css | `[x] Done (PR #2)` |
+| FIX-16 | Post | WCAG contrast — white text on pale accent backgrounds | `[x] Done (commits 7793338–2152ce2)` |
+| FIX-17 | Post | Mobile nav hidden with no replacement | `[x] Done (commit 465a192)` |
 
 ---
 
-## Target Score
+## Final Outcome
 
-Completing all P1 items should bring the score to approximately **8.0 / 10**.  
-Completing P1 + P2 should reach **8.5–9.0 / 10**.
+All 17 fixes completed. axe DevTools reports zero violations on all three pages. Lighthouse performance and SEO improvements confirmed on live site. Manual mobile testing passed at 375px, 768px, and 1440px.
+
+**Completed:** 2026-04-18  
+**Final estimated score:** 9.0–9.5 / 10 (up from 6.5 / 10)

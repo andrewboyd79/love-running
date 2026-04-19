@@ -1,16 +1,3 @@
-/* ── STATS BAR ── */
-.stats-bar { background: var(--cream); border-bottom: 1px solid var(--oat); padding: 36px 48px; display: flex; align-items: center; justify-content: center; gap: 0; }
-.stat { text-align: center; padding: 0 48px; }
-.stat-num { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: var(--ink); letter-spacing: 1px; }
-.stat-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bark); margin-top: 4px; }
-.stat-divider { width: 1px; height: 48px; background: var(--oat); flex-shrink: 0; }
-@media (max-width: 767px) {
-  .stats-bar { flex-wrap: wrap; gap: 32px; padding: 28px 20px; }
-  .stat { padding: 0; flex: 1 1 calc(50% - 16px); }
-  .stat-num { font-size: 40px; }
-  .stat-divider { display: none; }
-}
-
 /* ============================================================
    Love Running — Shared Stylesheet
    Extracted from inline style blocks (FIX-09, FIX-10)
@@ -69,4 +56,17 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
   nav { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
   .nav-links { gap: 20px; }
   footer { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+}
+
+/* ── STATS BAR ── */
+.stats-bar { background: var(--cream); border-bottom: 1px solid var(--oat); padding: 36px 48px; display: flex; align-items: center; justify-content: center; }
+.stat { text-align: center; padding: 0 48px; }
+.stat-num { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 56px; line-height: 1; color: var(--ink); letter-spacing: 1px; }
+.stat-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--bark); margin-top: 4px; }
+.stat-divider { width: 1px; height: 48px; background: var(--oat); flex-shrink: 0; }
+@media (max-width: 767px) {
+  .stats-bar { flex-wrap: wrap; gap: 32px; padding: 28px 20px; }
+  .stat { padding: 0; flex: 1 1 calc(50% - 16px); }
+  .stat-num { font-size: 40px; }
+  .stat-divider { display: none; }
 }

@@ -70,3 +70,18 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
   .stat-num { font-size: 40px; }
   .stat-divider { display: none; }
 }
+
+/* ── ROUTE MAPS ── */
+.maps-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--bark); }
+.map-col { padding: 28px 32px 32px; }
+.map-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; }
+.map-run-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.map-run-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.map-expect { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 16px; }
+.map-frame { width: 100%; aspect-ratio: 16 / 9; border: none; border-radius: 12px; display: block; }
+.map-directions { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); text-decoration: none; }
+.map-directions:hover { color: #fff; }
+@media (max-width: 767px) {
+  .maps-strip { grid-template-columns: 1fr; }
+  .map-col { padding: 24px 20px; }
+}

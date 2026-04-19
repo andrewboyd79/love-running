@@ -85,3 +85,16 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
   .maps-strip { grid-template-columns: 1fr; }
   .map-col { padding: 24px 20px; }
 }
+
+/* ── FAQ ── */
+.faq { border-bottom: 1px solid var(--oat); padding-bottom: 32px; margin-bottom: 32px; }
+.faq-heading { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--ink); margin-bottom: 6px; }
+.faq-intro { font-size: 13px; color: var(--pebble); margin-bottom: 20px; }
+.faq-item { border-top: 1px solid var(--oat); }
+.faq-item:last-of-type { border-bottom: 1px solid var(--oat); }
+.faq-question { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; font-size: 15px; font-weight: 600; color: var(--ink); cursor: pointer; user-select: none; }
+.faq-question::-webkit-details-marker { display: none; }
+.faq-question::after { content: '›'; font-size: 20px; color: var(--pebble); flex-shrink: 0; transition: transform 0.2s ease; display: inline-block; }
+details[open] > .faq-question::after { transform: rotate(90deg); }
+.faq-answer { padding: 0 0 16px; }
+.faq-answer p { font-size: 14px; color: var(--stone); line-height: 1.7; }

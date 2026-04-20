@@ -1,0 +1,26 @@
+[
+  {
+    "id": "event-1",
+    "title": "Dublin City 10k",
+    "date": "2026-05-12",
+    "location": "Phoenix Park, Dublin",
+    "description": "Club group entry — register with us to run together.",
+    "link": ""
+  },
+  {
+    "id": "event-2",
+    "title": "Howth Head 5 Mile",
+    "date": "2026-06-01",
+    "location": "Howth Village, Co. Dublin",
+    "description": "Scenic coastal race. Club entry closes 10 days before race day.",
+    "link": ""
+  },
+  {
+    "id": "event-3",
+    "title": "Docklands Summer Parkrun",
+    "date": "2026-06-20",
+    "location": "Grand Canal Dock, Dublin",
+    "description": "Free 5k. Just show up and run — no registration required.",
+    "link": ""
+  }
+]

@@ -113,8 +113,6 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
 .story-badge-trail { background: rgba(0,137,173,0.12); color: #00374a; }
 .story-badge-sunday { background: rgba(251,189,65,0.18); color: #6b4400; }
 .story-quote { font-size: 15px; font-style: italic; color: var(--stone); line-height: 1.65; margin: 0 0 16px; flex: 1; }
-.story-read-more { font-size: 12px; font-weight: 700; color: var(--slushie); text-decoration: none; align-self: flex-start; }
-.story-read-more:hover { text-decoration: underline; }
 @media (max-width: 767px) {
   .stories-section { padding: 32px 20px 40px; }
   .stories-grid { grid-template-columns: 1fr; }

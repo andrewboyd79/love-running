@@ -69,6 +69,7 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
   .stat { padding: 0; flex: 1 1 calc(50% - 16px); }
   .stat-num { font-size: 40px; }
   .stat-divider { display: none; }
+}
 
 /* ── EVENT CALENDAR ── */
 .events-section { background: var(--cream); padding: 48px 48px 56px; border-top: 1px solid var(--oat); }
@@ -91,6 +92,7 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
   .events-section { padding: 32px 20px 40px; }
   .event-card { flex-wrap: wrap; gap: 12px; }
   .event-link { width: 100%; }
+}
 
 /* ── MEMBER STORIES ── */
 .stories-section { background: var(--cream); border-top: 1px solid var(--oat); padding: 48px 48px 56px; }
@@ -111,6 +113,7 @@ footer { background: var(--ink); padding: 32px 48px; display: flex; justify-cont
 @media (max-width: 767px) {
   .stories-section { padding: 32px 20px 40px; }
   .stories-grid { grid-template-columns: 1fr; }
+}
 
 /* ── GALLERY FILTERS ── */
 .filter-btn { display: inline-flex; align-items: center; gap: 6px; border-radius: 100px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1.5px solid var(--oat); background: #fff; color: var(--stone); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
